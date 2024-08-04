@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const isAuthenticated = async (req, res, next) => {
+const authenticateUser = async (req, res, next) => {
     try {
         const token = req.cookies.token;
         if (!token) {
@@ -10,7 +10,6 @@ const isAuthenticated = async (req, res, next) => {
         if (!decode) {
             return res.status(401).json({ message: "User not authenticated" })
         }
-        console.log(decode)
         req.id = decode.userId
         next()
     } catch (error) {
@@ -18,4 +17,4 @@ const isAuthenticated = async (req, res, next) => {
         res.status(500).json({ error: error.message })
     }
 }
-module.exports = isAuthenticated
+module.exports = authenticateUser
