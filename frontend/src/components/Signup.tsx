@@ -1,5 +1,3 @@
-// src/components/Signup.tsx
-import axios, { AxiosError } from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import apiClient from "../utils/apiClient";
