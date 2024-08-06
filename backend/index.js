@@ -9,10 +9,13 @@ require('dotenv').config()
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin",`${process.env.FE_BASE_URL}`);
+    next();
+  });
 app.use(cookieParser())
 app.use(express.json())
-app.use(cors({ origin: process.env.FE_BASE_URL, credentials: true }))
+app.use(cors({ origin: `${process.env.FE_BASE_URL}`, credentials: true }))
 app.use("/app/v1/user", userRouter)
 app.use("/app/v1/message", messageRouter)
 app.listen(PORT, () => {
