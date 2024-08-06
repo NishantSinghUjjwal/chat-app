@@ -1,7 +1,6 @@
 // src/components/ChatNavbar.tsx
 import React from "react";
 import { ChatWindowProps } from "./Conversation";
-import { FaSignOutAlt } from "react-icons/fa";
 import ThemeSwitcher from "./ThemeSwitcher";
 import Logout from "./Logout";
 

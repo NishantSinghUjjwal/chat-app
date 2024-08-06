@@ -1,10 +1,8 @@
-import { useState } from "react";
 import Signup from "./components/Signup";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import { Toaster } from "react-hot-toast";
-import ThemeSwitcher from "./components/ThemeSwitcher";
 
 function App() {
   const router = createBrowserRouter([

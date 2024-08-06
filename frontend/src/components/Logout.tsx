@@ -1,4 +1,3 @@
-import React from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import apiClient from "../utils/apiClient";
 import toast from "react-hot-toast";
