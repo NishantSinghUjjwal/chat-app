@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cookieParser())
 app.use(express.json())
 
-app.use((req, res, next) => allowCors((req, res) => next())(req, res));
+app.use(allowCors);
 
 app.use("/app/v1/user", userRouter)
 app.use("/app/v1/message", messageRouter)
