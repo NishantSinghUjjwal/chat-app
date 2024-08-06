@@ -1,15 +1,30 @@
 // src/components/Login.tsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import apiClient from "../utils/apiClient";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { setAuthUser } from "../redux/userSlice";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    try {
+      const response = await apiClient.post("/user/login", {
+        userName,
+        password,
+      });
+      toast.success(response.data.message);
+      dispatch(setAuthUser(response.data.user));
+      navigate("/");
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
@@ -19,13 +34,13 @@ const Login: React.FC = () => {
         <form onSubmit={handleLogin} className="space-y-6">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text">User name</span>
             </label>
             <input
-              type="email"
+              type="text"
               className="input input-bordered w-full"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               required
             />
           </div>

@@ -11,6 +11,26 @@ export default {
     require('daisyui'),
   ],
   daisyui: {
-    themes: ["light"], // Set the theme to light
+    themes: [
+      'light', // default theme
+      'dark',
+      'cupcake',
+      'bumblebee',
+      'emerald',
+      'corporate',
+      'synthwave',
+      'retro',
+      'cyberpunk',
+      'valentine',
+      'halloween',
+      'garden',
+      'forest',
+      'aqua',
+      'luxury',
+      'dracula',
+      'cmyk',
+      'autumn',
+      'business',
+    ],
   },
 }

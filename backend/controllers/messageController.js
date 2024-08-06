@@ -39,7 +39,7 @@ const sendMessage = async (req, res) => {
         //SOCKET IO -LATER
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ message: error.message })
     }
 }
 
@@ -56,7 +56,7 @@ const getMessage = async (req, res) => {
         return res.status(200).json({ messages: conversation.messages })
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ message: error.message })
     }
 }
 module.exports = {

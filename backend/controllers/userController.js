@@ -12,7 +12,7 @@ const register = async (req, res) => {
         }
         const user = await User.findOne({ userName });
         if (user) {
-            return res.status(400).json({ messaage: "User Name already exists, please try different name" })
+            return res.status(400).json({ message: "User Name already exists, please try different name" })
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -30,7 +30,7 @@ const register = async (req, res) => {
         return res.status(200).json({ message: "Account created successfully", success: true, user: newUser })
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ message: error.message })
     }
 }
 
@@ -59,7 +59,7 @@ const login = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ message: error.message })
     }
 }
 
@@ -70,7 +70,7 @@ const logout = async (req, res) => {
         })
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ message: error.message })
     }
 }
 
@@ -84,7 +84,7 @@ const getOtherUsers = async (req, res) => {
         return res.status(200).json(otherUsers);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ message: error.message })
     }
 }
 module.exports = {

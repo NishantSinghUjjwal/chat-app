@@ -1,18 +1,35 @@
 // src/components/Signup.tsx
-import React, { useState } from 'react';
+import axios, { AxiosError } from "axios";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import apiClient from "../utils/apiClient";
+import toast from "react-hot-toast";
 
 const Signup: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [gender, setGender] = useState('');
+const navigate =  useNavigate()
 
-  const handleSignup = (e: React.FormEvent) => {
+  const [fullName, setFullName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [gender, setGender] = useState("");
+
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your signup logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Gender:', gender);
+    try {
+      const response = await apiClient.post(`/user/register`, {
+        fullName,
+        userName,
+        password,
+        confirmPassword,
+        gender,
+      });
+      console.log(response.data);
+      toast.success(response.data.message);
+      navigate("/login")
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
@@ -22,13 +39,25 @@ const Signup: React.FC = () => {
         <form onSubmit={handleSignup} className="space-y-6">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text">Full name</span>
             </label>
             <input
-              type="email"
+              type="text"
               className="input input-bordered w-full"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">User name</span>
+            </label>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               required
             />
           </div>
@@ -89,6 +118,11 @@ const Signup: React.FC = () => {
             <button type="submit" className="btn btn-primary w-full">
               Sign Up
             </button>
+          </div>
+          <div className="text-center mt-4">
+            <Link to="/login" className="link link-primary">
+              Already have an account? Login
+            </Link>
           </div>
         </form>
       </div>
