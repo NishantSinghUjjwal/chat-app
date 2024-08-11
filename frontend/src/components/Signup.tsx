@@ -22,7 +22,6 @@ const navigate =  useNavigate()
         confirmPassword,
         gender,
       });
-      console.log(response.data);
       toast.success(response.data.message);
       navigate("/login")
     } catch (error: any) {

@@ -8,7 +8,6 @@ const useGetUsers = () => {
   const fetchUsers = async () => {
     try {
       const res = await apiClient.get("/user/getOtherUsers");
-      console.log(res.data);
       setUsers(res.data);
     } catch (error: any) {
       toast.error(error.response.data.message);

@@ -4,21 +4,23 @@ const userRouter = require('./routes/userRoute');
 const cookieParser = require('cookie-parser')
 const cors = require('cors');
 const messageRouter = require('./routes/messageRoute');
-const allowCors = require('./middleware/allowCors');
+const corsEnabledHandler = require('./middleware/allowCors');
+const { app, server } = require('./socket/socket');
 require('dotenv').config()
 
-const app = express();
-
 const PORT = process.env.PORT || 5000;
-
-app.use(cookieParser())
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cookieParser())
+app.use(cors({ credentials: true, origin: `${process.env.FE_BASE_URL}` }))
 
-app.use(allowCors);
 
+//ROUTES
 app.use("/app/v1/user", userRouter)
 app.use("/app/v1/message", messageRouter)
-app.listen(PORT, () => {
+
+
+server.listen(PORT, () => {
     connnectDB()
     console.log(`Server listening on port ${PORT}`)
 })
