@@ -12,6 +12,7 @@ import { setOnlineUsers } from "./redux/userSlice";
 import { Message } from "./components/Messages";
 import { setMessages } from "./redux/messageSlice";
 import { User } from "./components/Sidebar";
+import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   const dispatch = useDispatch();
   const { authUser }: { authUser: User } = useSelector(
@@ -45,9 +46,9 @@ function App() {
       }
     };
   }, [authUser]);
- 
+
   const router = createBrowserRouter([
-    { path: "/", element: <HomePage /> },
+    { path: "/", element: <ProtectedRoute><HomePage /></ProtectedRoute> },
     { path: "/login", element: <Login /> },
     { path: "/signup", element: <Signup /> },
   ]);
