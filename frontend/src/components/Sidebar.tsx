@@ -1,5 +1,5 @@
 // src/components/Home.tsx
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import ChatListItem from "./ChatListItem";
 import useGetUsers from "../hooks/useGetUsers";
 import Loading from "./Loading";
