@@ -1,5 +1,5 @@
 // src/components/ChatWindow.tsx
-import React, { useEffect } from "react";
+import React from "react";
 import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 import ChatNavbar from "./ChatNavbar";
@@ -8,7 +8,6 @@ import { RootType } from "../redux/store";
 import { User } from "./Sidebar";
 
 const Conversation: React.FC = () => {
-  const { socket } = useSelector((state: RootType) => state.socket);
 
   const { selectedUser }: { selectedUser: User} =
     useSelector((store: RootType) => store.user);

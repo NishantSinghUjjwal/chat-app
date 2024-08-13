@@ -1,5 +1,5 @@
 // src/components/ChatNavbar.tsx
-import React, { useEffect } from "react";
+import React from "react";
 import ThemeSwitcher from "./ThemeSwitcher";
 import Logout from "./Logout";
 import { User } from "./Sidebar";
@@ -11,9 +11,8 @@ const ChatNavbar: React.FC<{ selectedUser: User }> = ({ selectedUser }) => {
   const userOnline = onlineUsers.includes(selectedUser?._id);
   return (
     <div
-      className={`flex items-center p-4 bg-base-200 border-b border-base-300 ${
-        selectedUser ? "" : "justify-end"
-      }`}
+      className={`flex items-center p-4 bg-base-200 border-b border-base-300 ${selectedUser ? "" : "justify-end"
+        }`}
     >
       {selectedUser && (
         <>
@@ -27,9 +26,8 @@ const ChatNavbar: React.FC<{ selectedUser: User }> = ({ selectedUser }) => {
               {selectedUser.userName}
             </div>
             <div
-              className={`text-sm ${
-                userOnline ? "text-green-500" : "text-gray-500"
-              }`}
+              className={`text-sm ${userOnline ? "text-green-500" : "text-gray-500"
+                }`}
             >
               {userOnline ? "Online" : "Offline"}
             </div>

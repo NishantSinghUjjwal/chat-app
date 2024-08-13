@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { RootType } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessages } from "../redux/messageSlice";

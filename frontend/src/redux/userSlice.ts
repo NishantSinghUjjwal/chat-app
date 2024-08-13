@@ -16,7 +16,7 @@ const userSlice: Slice = createSlice({
     setOnlineUsers: (state, action) => {
       if (action.payload) state.onlineUsers = action.payload;
     },
-    clearUser: (state, action) => {
+    clearUser: (state) => {
       state.authUser = null;
       state.selectedUser = null;
     },

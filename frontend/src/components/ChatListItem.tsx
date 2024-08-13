@@ -11,7 +11,6 @@ interface UserItemProps {
 
 const ChatListItem: React.FC<UserItemProps> = ({
   name,
-  lastMessage,
   profilePicture,
   isOnline,
   onClick,

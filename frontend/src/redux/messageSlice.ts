@@ -9,7 +9,7 @@ const messageSlice = createSlice({
     setMessages: (state, action) => {
       state.messages = action.payload;
     },
-    clearMessages: (state, action) => {
+    clearMessages: (state) => {
       state.messages = initialState.messages;
     },
   },

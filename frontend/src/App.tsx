@@ -3,14 +3,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import { Toaster } from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import io, { Socket } from "socket.io-client";
+import io from "socket.io-client";
 import { RootType } from "./redux/store";
 import { setSocket } from "./redux/socketSlice";
 import { setOnlineUsers } from "./redux/userSlice";
-import { Message } from "./components/Messages";
-import { setMessages } from "./redux/messageSlice";
 import { User } from "./components/Sidebar";
 import ProtectedRoute from "./components/ProtectedRoute";
 function App() {

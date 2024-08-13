@@ -1,4 +1,3 @@
-// src/components/Message.tsx
 import React, { useEffect, useRef } from "react";
 import { User } from "./Sidebar";
 

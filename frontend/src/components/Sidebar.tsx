@@ -52,7 +52,7 @@ const Sidebar: React.FC = () => {
                 lastMessage={'Hello'}
                 profilePicture={user.profilePhoto}
                 isOnline={onlineUsers.includes(user._id)}
-                onClick={(e) => handleOnSelectChat(user)}
+                onClick={() => handleOnSelectChat(user)}
               />
             ))}
           </ul>

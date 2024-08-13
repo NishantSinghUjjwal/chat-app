@@ -12,7 +12,7 @@ const Logout = () => {
   const handleLogout = async () => {
     try {
       const res = await apiClient.get("/user/logout");
-      dispatch(clearMessages(null));
+      dispatch(clearMessages());
       dispatch(clearUser(null));
       toast.success(res.data.message);
 
