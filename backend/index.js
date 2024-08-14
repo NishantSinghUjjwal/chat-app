@@ -10,9 +10,9 @@ require('dotenv').config()
 
 const PORT = process.env.PORT || 5000;
 app.use(express.urlencoded({ extended: true }))
+app.use(cors({ credentials: true, origin: [process.env.FE_BASE_URL], methods: ['POST', 'GET', 'PUT', 'DELETE'] }))
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({ credentials: true, origin: [process.env.FE_BASE_URL], methods: ['POST', 'GET', 'PUT', 'PATCH', 'DELETE'] }))
 
 
 //ROUTES
