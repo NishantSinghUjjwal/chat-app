@@ -1,4 +1,3 @@
-// src/components/Home.tsx
 import React, {  useState } from "react";
 import ChatListItem from "./ChatListItem";
 import useGetUsers from "../hooks/useGetUsers";
@@ -44,6 +43,7 @@ const Sidebar: React.FC = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
+         
           <ul className="space-y-2 overflow-auto flex-1">
             {filteredUsers.map((user, index) => (
               <ChatListItem
