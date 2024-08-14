@@ -14,7 +14,7 @@ app.use(cors({ credentials: true, origin: [process.env.FE_BASE_URL], methods: ['
 app.use(express.json())
 app.use(cookieParser())
 
-
+    
 //ROUTES
 app.use("/app/v1/user", userRouter)
 app.use("/app/v1/message", messageRouter)
