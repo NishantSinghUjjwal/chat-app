@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 
 const ThemeSwitcher: React.FC = () => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   const handleThemeChange = (newTheme: "light" | "dark") => {
     setTheme(newTheme);
