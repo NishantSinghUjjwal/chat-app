@@ -11,6 +11,7 @@ import { setSocket } from "./redux/socketSlice";
 import { setOnlineUsers } from "./redux/userSlice";
 import { User } from "./components/Sidebar";
 import ProtectedRoute from "./components/ProtectedRoute";
+import LogoutHandler from "./components/LogoutHandler";
 function App() {
   const dispatch = useDispatch();
   const { authUser }: { authUser: User } = useSelector(
@@ -49,6 +50,7 @@ function App() {
     { path: "/", element: <ProtectedRoute><HomePage /></ProtectedRoute> },
     { path: "/login", element: <Login /> },
     { path: "/signup", element: <Signup /> },
+    { path: "/logout", element: <LogoutHandler /> },
   ]);
   return (
     <div className="flex justify-center items-center h-screen w-screen">
