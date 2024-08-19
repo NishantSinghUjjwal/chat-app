@@ -5,6 +5,7 @@ import apiClient from "../utils/apiClient";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setAuthUser } from "../redux/userSlice";
+import { Link } from "react-router-dom";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,11 @@ const Login: React.FC = () => {
             <button type="submit" className="btn btn-primary w-full">
               Login
             </button>
+          </div>
+          <div className="text-center mt-4">
+            <Link to="/signup" className="link link-primary">
+              Don't have an account? Signup
+            </Link>
           </div>
         </form>
       </div>
