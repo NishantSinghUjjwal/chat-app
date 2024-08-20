@@ -39,7 +39,7 @@ const sendMessage = async (req, res) => {
 
         const receiverSocketId = getReceiverSocketId(receiverId)
         if (receiverSocketId) {
-            io.to(receiverSocketId).emit('newMessage', newMessage)
+            io.to(receiverSocketId).emit('newMessage', { socket_sender_id: senderId, newMessage })
         }
 
         return res.status(200).json({ message: "Message sent successfully", newMessage })

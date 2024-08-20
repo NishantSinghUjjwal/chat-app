@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMessages } from "../redux/messageSlice";
 import { RootType } from "../redux/store";
 import { Message } from "./Messages";
+import Loading from "./Loading";
 
 const MessageInput: React.FC<{ receiver_id: string }> = ({
   receiver_id,
@@ -18,10 +19,11 @@ const MessageInput: React.FC<{ receiver_id: string }> = ({
     (store: RootType) => store.messages
   );
   const [message, setMessage] = useState("");
-
+  const [sendingMessage, setSendingMessage] = useState(false)
   const handleSend = async () => {
     if (message.trim()) {
       try {
+        setSendingMessage(true)
         const res = await apiClient.post(`/message/send/${receiver_id}`, {
           message,
         });
@@ -29,7 +31,9 @@ const MessageInput: React.FC<{ receiver_id: string }> = ({
         const newMessage: Message = res.data.newMessage;
         let newMessages = [...messages, newMessage];
         disptach(setMessages(newMessages));
+        setSendingMessage(false)
       } catch (error: any) {
+        setSendingMessage(false)
         toast.error(error.response.data.message);
         console.log(error);
       }
@@ -52,7 +56,11 @@ const MessageInput: React.FC<{ receiver_id: string }> = ({
         onChange={(e) => setMessage(e.target.value)}
       />
       <button className="btn bg-blue-500 btn-circle ml-4">
-        <FaPaperPlane className="text-white mr-1" />
+        {
+          sendingMessage ?
+            <Loading />
+            :
+            <FaPaperPlane className="text-white mr-1" />}
       </button>
     </form>
   );

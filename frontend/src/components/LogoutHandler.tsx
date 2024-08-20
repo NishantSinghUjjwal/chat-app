@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
 import { clearMessages } from '../redux/messageSlice';
 import { clearUser } from '../redux/userSlice';
 import toast from 'react-hot-toast';
@@ -8,7 +7,6 @@ import apiClient from '../utils/apiClient';
 
 const LogoutHandler = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const handleLogout = async () => {
         try {
             const res = await apiClient.get("/user/logout");
@@ -16,7 +14,7 @@ const LogoutHandler = () => {
             dispatch(clearUser(null));
             toast.success(res.data.message);
 
-            navigate("/login");
+            window.location.replace("/login")
         } catch (error: any) {
             toast.error(error.response.data.message);
             console.log(error);

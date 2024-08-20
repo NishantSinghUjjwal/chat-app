@@ -19,8 +19,7 @@ const Messages = ({ receiver_id }: { receiver_id: string }) => {
     (state: RootType) => state.messages
   );
   useGetUserMessages(receiver_id);
-  useGetRealTimeMessages();
-
+  useGetRealTimeMessages(receiver_id);
   return (
     <div className="flex-1 p-4 overflow-y-auto">
       {messages.length > 0 && authUser ? (

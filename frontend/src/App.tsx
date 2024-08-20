@@ -29,7 +29,6 @@ function App() {
       });
       dispatch(setSocket(s));
       s.on("usersOnline", (onlineUsers: string[]) => {
-        console.log(onlineUsers);
         dispatch(setOnlineUsers(onlineUsers));
       });
     } else {

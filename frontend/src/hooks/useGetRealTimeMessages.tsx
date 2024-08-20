@@ -4,20 +4,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMessages } from "../redux/messageSlice";
 import { Message } from "../components/Messages";
 
-const useGetRealTimeMessages = () => {
+const useGetRealTimeMessages = (sender_id: string) => {
   const dispatch = useDispatch();
   const { socket } = useSelector((state: RootType) => state.socket);
   const { messages } = useSelector((state: RootType) => state.messages);
-
   useEffect(() => {
     if (socket) {
-      socket.on("newMessage", (newMessage: Message) => {
-        const newMessages = [...messages, newMessage];
-        dispatch(setMessages(newMessages));
-      });
+      const handleNewMessage = ({ socket_sender_id, newMessage }: { socket_sender_id: string, newMessage: Message }) => {
+        if (sender_id === socket_sender_id) {
+          const newMessages = [...messages, newMessage];
+          dispatch(setMessages(newMessages));
+        }
+      };
+
+
+      socket.on("newMessage", handleNewMessage);
+
+      // Cleanup the event listener when the sender_id changes or the component unmounts
+      return () => {
+        socket.off("newMessage", handleNewMessage);
+      }
     }
-  }, [socket, messages.length]);
-  return <div>useGetRealTimeMessages</div>;
+  }, [socket, messages.length, sender_id]);
+  return <></>;
 };
 
 export default useGetRealTimeMessages;

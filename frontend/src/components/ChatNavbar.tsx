@@ -1,6 +1,5 @@
 // src/components/ChatNavbar.tsx
 import React from "react";
-import ThemeSwitcher from "./ThemeSwitcher";
 import Logout from "./Logout";
 import { User } from "./Sidebar";
 import { useSelector } from "react-redux";
@@ -35,7 +34,6 @@ const ChatNavbar: React.FC<{ selectedUser: User }> = ({ selectedUser }) => {
         </>
       )}
 
-      <ThemeSwitcher />
       <Logout />
     </div>
   );

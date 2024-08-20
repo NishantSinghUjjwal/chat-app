@@ -42,7 +42,7 @@ const Message: React.FC<MessageProps> = ({
           </div>
         )}
         <div
-          className={`max-w-xs md:max-w-md lg:max-w-lg px-3 py-2 rounded-full ${
+          className={`max-w-xs md:max-w-md lg:max-w-lg px-3 py-2 rounded-[13px] ${
             isCurrentUser ? "bg-blue-500 text-white" : "bg-gray-200 text-black"
           }`}
         >

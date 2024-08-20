@@ -23,7 +23,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  blacklist:['socket']
+  blacklist:['socket',]
 };
 
 // Create persisted reducers
@@ -40,9 +40,7 @@ const rootReducer = persistReducer(
 const store: Store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
     }),
   reducer: rootReducer,
 });

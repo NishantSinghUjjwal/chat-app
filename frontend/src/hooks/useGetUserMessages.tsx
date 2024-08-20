@@ -12,9 +12,6 @@ const useGetUserMessages = (receiver_id: string) => {
   const { messages }: { messages: Message[] } = useSelector(
     (store: RootType) => store.messages
   );
-  const { selectedUser }: { selectedUser: User } = useSelector(
-    (store: RootType) => store.user
-  );
   const [loading, setLoading] = useState(true);
   const fetchmessages = async () => {
     try {
@@ -28,7 +25,7 @@ const useGetUserMessages = (receiver_id: string) => {
   };
   useEffect(() => {
     fetchmessages();
-  }, [selectedUser?._id]);
+  }, [receiver_id]);
   return { loading, messages };
 };
 export default useGetUserMessages;

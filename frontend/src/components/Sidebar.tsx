@@ -1,10 +1,11 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import ChatListItem from "./ChatListItem";
 import useGetUsers from "../hooks/useGetUsers";
 import Loading from "./Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedUser } from "../redux/userSlice";
 import { RootType } from "../redux/store";
+import YouBar from "./YouBar";
 
 export interface User {
   _id: string;
@@ -29,33 +30,37 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className="w-96 bg-base-100 p-4 border-r border-base-300 flex flex-col h-screen">
+    <aside className="w-96 bg-base-100 border-r border-base-300 flex flex-col h-screen">
       {loading ? (
         <Loading />
       ) : (
         <>
-          <div className="mb-4">
-            <input
-              type="text"
-              placeholder="Search users..."
-              className="input input-bordered w-full max-w-xs"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-         
-          <ul className="space-y-2 overflow-auto flex-1">
-            {filteredUsers.map((user, index) => (
-              <ChatListItem
-                key={index}
-                name={user.userName}
-                lastMessage={'Hello'}
-                profilePicture={user.profilePhoto}
-                isOnline={onlineUsers.includes(user._id)}
-                onClick={() => handleOnSelectChat(user)}
+            <YouBar />
+          <div className=" p-4">
+
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Search users..."
+                className="input input-bordered w-full"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
-            ))}
-          </ul>
+            </div>
+
+            <ul className="space-y-2 overflow-auto flex-1">
+              {filteredUsers.map((user, index) => (
+                <ChatListItem
+                  key={index}
+                  name={user.userName}
+                  lastMessage={'Hello'}
+                  profilePicture={user.profilePhoto}
+                  isOnline={onlineUsers.includes(user._id)}
+                  onClick={() => handleOnSelectChat(user)}
+                />
+              ))}
+            </ul>
+          </div>
         </>
       )}
     </aside>

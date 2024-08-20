@@ -4,10 +4,6 @@ const authenticateUser = require('../middleware/authenticateUser');
 const allowCors = require('../middleware/allowCors');
 const userRouter = express.Router();
 
-userRouter.route("/").get((req, res) => {
-    console.log("hello");
-    return res.status(200).send({ hello: "hello" })
-});
 userRouter.route("/register").post(register);
 userRouter.route("/login").post(login);
 userRouter.route("/logout").get(logout);

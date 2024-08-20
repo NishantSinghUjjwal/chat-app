@@ -11,7 +11,7 @@ const ThemeSwitcher: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center space-x-2 mr-4">
+    <div className="flex items-center space-x-2">
       {theme == "dark" ? (
         <button className="btn btn-circle bg-yellow-500" onClick={() => handleThemeChange("light")}>
           <FaSun className="text-gray-300 text-lg" />
