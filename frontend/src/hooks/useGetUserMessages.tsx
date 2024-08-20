@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { RootType } from "../redux/store";
 import { setMessages } from "../redux/messageSlice";
-import { User } from "../components/Sidebar";
 import { Message } from "../components/Messages";
 
 const useGetUserMessages = (receiver_id: string) => {
