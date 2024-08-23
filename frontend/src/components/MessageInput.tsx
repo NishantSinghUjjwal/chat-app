@@ -8,15 +8,23 @@ import { setMessages } from "../redux/messageSlice";
 import { RootType } from "../redux/store";
 import { Message } from "./Messages";
 import Loading from "./Loading";
+import { User } from "./Sidebar";
 
 const MessageInput: React.FC<{ receiver_id: string }> = ({
   receiver_id,
 }: {
   receiver_id: string;
 }) => {
+
   const disptach = useDispatch();
   const { messages }: { messages: Message[] } = useSelector(
     (store: RootType) => store.messages
+  );
+  const { socket }: { socket: any } = useSelector(
+    (store: RootType) => store.socket
+  );
+  const { authUser }: { authUser: User } = useSelector(
+    (store: RootType) => store.user
   );
   const [message, setMessage] = useState("");
   const [sendingMessage, setSendingMessage] = useState(false)
@@ -49,6 +57,12 @@ const MessageInput: React.FC<{ receiver_id: string }> = ({
       className="p-4 bg-base-200 flex items-center space-x-2 border-t border-base-300"
     >
       <input
+        onFocus={() => {
+          socket.emit('Typing', { receiver_id, user_id: authUser._id })
+        }}
+        onBlur={()=>{
+          socket.emit('Typing_Stopped', { receiver_id, user_id: authUser._id })
+        }}
         type="text"
         placeholder="Type a message..."
         className="input input-bordered flex-1"

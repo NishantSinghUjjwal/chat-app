@@ -29,6 +29,16 @@ io.on('connection', (socket) => {
         delete usersOnline[userId]
         io.emit('usersOnline', Object.keys(usersOnline))
     })
+    socket.on('Typing', ({ user_id, receiver_id }) => {
+
+        const receiverSocketId = getReceiverSocketId(receiver_id)
+        io.to(receiverSocketId).emit('Typing', { user_id, receiver_id })
+    })
+    socket.on('Typing_Stopped', ({ user_id, receiver_id }) => {
+
+        const receiverSocketId = getReceiverSocketId(receiver_id)
+        io.to(receiverSocketId).emit('Typing_Stopped', { user_id, receiver_id })
+    })
 })
 
 module.exports = {
